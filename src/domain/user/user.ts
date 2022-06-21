@@ -1,3 +1,4 @@
+import { left, right } from "../../main/shared"
 import { Cpf, Email } from "./"
 import UserData from "./userData"
 
@@ -23,10 +24,16 @@ export class User {
 		const emailOrError = Email.create(user.email)
 		const cpfOrError = Cpf.create(user.cpf)
 
-		if(!cpfOrError || !emailOrError)
-			return undefined
+		if (cpfOrError.isLeft())
+			return left(cpfOrError.value)
 
-		return new User(user.name, emailOrError.email, cpfOrError.cpf, user.password)
+		if (emailOrError.isLeft())
+			return left(emailOrError.value)
+
+		const cpf: Cpf = cpfOrError.value.cpf as unknown as Cpf
+		const email: Email = emailOrError.value.email as unknown as Email
+
+		return right(new User(user.name, email, cpf, user.password))
 	}
 
 }

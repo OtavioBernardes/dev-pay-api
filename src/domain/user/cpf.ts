@@ -1,3 +1,5 @@
+import { Either, left, right } from '../../main/shared'
+
 export class Cpf {
     public readonly cpf: string
 
@@ -5,9 +7,10 @@ export class Cpf {
         this.cpf = cpf
     }
 
-    public static create(cpf: string): any {
+    public static create(cpf: string): Either<string, Cpf> {
         if (this.validate(cpf))
-            return new Cpf(cpf)
+            return right(new Cpf(cpf))
+        return left('Invalid cpf')
     }
 
     public static validate(cpf: string): boolean {

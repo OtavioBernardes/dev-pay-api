@@ -1,3 +1,5 @@
+import { Either, left, right } from '../../main/shared'
+
 export class Email {
     public readonly email: string
 
@@ -5,9 +7,10 @@ export class Email {
         this.email = email
     }
 
-    public static create(email: string): any {
+    public static create(email: string): Either<string, Email> {
         if (this.validate(email))
-            return new Email(email)
+            return right(new Email(email))
+        return left('Invalid email')
     }
 
     public static validate(email: string): boolean {

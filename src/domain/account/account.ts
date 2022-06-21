@@ -24,5 +24,4 @@ export class Account {
     validate(amount: number): Boolean {
         return amount > 0
     }
-
 }

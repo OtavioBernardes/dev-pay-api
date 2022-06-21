@@ -7,7 +7,7 @@ test('Não deve criar um usuario pois o e-mail é invalido', () => {
         password: 'password0123',
         cpf: '11834997654'
     })
-    expect(user).toBe(undefined)
+    expect(user.isLeft()).toBe(true)
 })
 
 test('Não deve criar um usuario pois o cpf é invalido', () => {
@@ -17,7 +17,7 @@ test('Não deve criar um usuario pois o cpf é invalido', () => {
         password: 'password0123',
         cpf: '11834997654'
     })
-    expect(user).toBe(undefined)
+    expect(user.isLeft()).toBe(true)
 })
 
 test('Deve criar um usuario', () => {
@@ -28,5 +28,5 @@ test('Deve criar um usuario', () => {
         cpf: '11834997654'
     }
     const user = User.create(data)
-    expect(user).toEqual(data)
+    expect(user.value).toEqual(data)
 })
