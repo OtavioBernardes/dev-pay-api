@@ -1,4 +1,4 @@
-import { Either, left, right } from '../../main/shared'
+import { Either, left, right } from '../../shared'
 
 export class Cpf {
     public readonly cpf: string

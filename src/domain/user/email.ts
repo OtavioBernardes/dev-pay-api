@@ -1,4 +1,4 @@
-import { Either, left, right } from '../../main/shared'
+import { Either, left, right } from '../../shared'
 
 export class Email {
     public readonly email: string

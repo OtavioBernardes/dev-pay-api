@@ -1,4 +1,4 @@
-import { left, right } from "../../main/shared"
+import { left, right } from "../../shared"
 import { Cpf, Email } from "./"
 import UserData from "./userData"
 
