@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import AccountRouter from './account-routes'
 
 const router = Router()
 
@@ -7,5 +8,7 @@ router.post('/api/', (request, response) => {
 		message: `Hello World`,
 	});
 });
+
+router.use("/api/", AccountRouter)
 
 export default router;
