@@ -1,7 +1,6 @@
-import { Cpf } from "../../../domain/user";
-import UserData from "../../../domain/user/userData";
+import { UserData } from "../../../domain/user";
 
 export interface UserRepository {
-    exists(cpf: Cpf): Promise<boolean>
+    exists(cpf: string): Promise<boolean>
     save(user: UserData): Promise<any>
 }
