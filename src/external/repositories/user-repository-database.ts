@@ -7,7 +7,7 @@ export class UserRepositoryDatabase implements UserRepository {
     constructor(readonly connection: Connection) { }
 
     save(user: UserData): Promise<any> {
-        const query = `INSERT INTO user (name, cpf, password) VALUES  ('${user.name}', '${user.cpf})', '${user.password}')`
+        const query = `INSERT INTO user (name, cpf, password) VALUES  ('${user.name}', '${user.cpf}', '${user.password}')`
         return this.connection.query(query)
     }
 

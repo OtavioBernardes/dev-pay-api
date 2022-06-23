@@ -1,10 +1,12 @@
+import { right } from "../../shared"
+
 export class Account {
     balance: number = 0
 
     private constructor() { }
 
     public static create(): any {
-        return new Account()
+        return right( new Account())
     }
 
     public getBalance(): number {
