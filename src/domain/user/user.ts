@@ -1,6 +1,6 @@
 import { left, right } from "../../shared"
 import { Cpf, Email } from "./"
-import UserData from "./userData"
+import { UserData } from "./userData"
 
 export class User {
 	public readonly name: string
