@@ -11,8 +11,9 @@ export class UserRepositoryDatabase implements UserRepository {
         return this.connection.query(query)
     }
 
-    async exists(cpf: string): Promise<any> {
+    async exists(cpf: string): Promise<boolean> {
         const query = `SELECT * FROM user WHERE cpf = '${cpf}'`
-        return this.connection.query(query)
+        const result = await this.connection.query(query)
+        return result.length !== 0
     }
 }
