@@ -1,4 +1,4 @@
-import { created } from "../helpers";
+import { badRequest, created } from "../helpers";
 import { HttpRequest } from "../ports"
 import { NewAccount } from "../../use-cases/account/new-account";
 
@@ -10,8 +10,12 @@ export class NewAcccountController {
     }
 
     async handle(req: HttpRequest): Promise<any> {
-        this.usecase.perform(req.body);
-        return created(req)
+        const res = await this.usecase.perform(req.body);
+
+        if (res.isLeft())
+            return badRequest({ message: res.value })
+
+        return created(res.value);
     }
 
 }
