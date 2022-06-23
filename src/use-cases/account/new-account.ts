@@ -3,22 +3,21 @@ import { UseCase } from "../ports/use-case"
 import { Either, left, right } from "../../shared"
 import { Account } from "../../domain/account/account"
 import { UserRepository } from "./ports/user-repository"
+import { AccountRepository } from "./ports/account-repository"
 
 export class NewAccount implements UseCase {
-    private repo: UserRepository;
+    private userRepo: UserRepository;
+    private accountRepo: AccountRepository
 
-    constructor(repo: UserRepository) {
-        this.repo = repo;
+    constructor(userRepo: UserRepository, accountRepo: AccountRepository) {
+        this.userRepo = userRepo;
+        this.accountRepo = accountRepo;
     }
 
-    /**
-     * Proximos passos para o caso de uso orquestrar:
-     * - Verificar se cpf já possui conta registrada na plataforma
-     * - Condificação da senha
-     * - Abertura da conta
-     */
-
     async perform(user: UserData): Promise<any> {
+        if (await this.userRepo.exists(user.cpf))
+            return left('User already exists!')
+
         const newUserOrError: Either<String, User> = User.create(user)
         if (newUserOrError.isLeft())
             return left(newUserOrError.value)
@@ -27,8 +26,9 @@ export class NewAccount implements UseCase {
         if (newAccountOrError.isLeft())
             return left(newAccountOrError.value)
 
-        await this.repo.save(newUserOrError.value as unknown as UserData)
-
+        const newUser = await this.userRepo.save(newUserOrError.value as unknown as UserData)
+        console.log(newUser.insertId)
+        await this.accountRepo.save({ user_id: newUser.insertId, balance: newAccountOrError.value.balance })
         return right(newUserOrError.value)
     }
 }
