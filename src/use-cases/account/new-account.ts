@@ -1,20 +1,27 @@
 import { User, UserData } from "../../domain/user"
-import { UseCase } from "../ports/use-case"
+import { UseCase, Hasher } from "../ports"
 import { Either, left, right } from "../../shared"
 import { Account } from "../../domain/account/account"
 import { UserRepository } from "./ports/user-repository"
 import { AccountRepository } from "./ports/account-repository"
 
 export class NewAccount implements UseCase {
-    private userRepo: UserRepository;
+    private userRepo: UserRepository
     private accountRepo: AccountRepository
+    private hasher: Hasher;
 
-    constructor(userRepo: UserRepository, accountRepo: AccountRepository) {
-        this.userRepo = userRepo;
-        this.accountRepo = accountRepo;
+    constructor(
+        userRepo: UserRepository,
+        accountRepo: AccountRepository,
+        hasher: Hasher
+    ) {
+        this.userRepo = userRepo
+        this.accountRepo = accountRepo
+        this.hasher = hasher
     }
 
     async perform(user: UserData): Promise<any> {
+
         if (await this.userRepo.exists(user.cpf))
             return left('User already exists!')
 
@@ -26,7 +33,10 @@ export class NewAccount implements UseCase {
         if (newAccountOrError.isLeft())
             return left(newAccountOrError.value)
 
-        const newUser = await this.userRepo.save(newUserOrError.value as unknown as UserData)
+        const userData = newUserOrError.value as unknown as UserData
+
+        userData.password = await this.hasher.hash(userData.password)
+        const newUser = await this.userRepo.save(userData)
 
         await this.accountRepo.save({ user_id: newUser.insertId, balance: newAccountOrError.value.balance })
         return right(newUserOrError.value)
