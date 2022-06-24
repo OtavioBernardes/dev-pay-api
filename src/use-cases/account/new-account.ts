@@ -27,7 +27,7 @@ export class NewAccount implements UseCase {
             return left(newAccountOrError.value)
 
         const newUser = await this.userRepo.save(newUserOrError.value as unknown as UserData)
-        console.log(newUser.insertId)
+
         await this.accountRepo.save({ user_id: newUser.insertId, balance: newAccountOrError.value.balance })
         return right(newUserOrError.value)
     }
