@@ -6,7 +6,7 @@ export class Account {
     private constructor() { }
 
     public static create(): any {
-        return right( new Account())
+        return right(new Account())
     }
 
     public getBalance(): number {
