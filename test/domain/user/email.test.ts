@@ -1,4 +1,4 @@
-import { Email } from "../../../src/domain/user/email"
+import { Email } from "../../../src/domain/user/value-object"
 
 test('Não deve criar um e-mail', () => {
 	const email = Email.create('otavio.teste.com')

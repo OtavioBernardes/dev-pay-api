@@ -1,6 +1,6 @@
 import { left, right } from "../../shared"
-import { Cpf, Email } from "./"
-import { UserData } from "./userData"
+import { Cpf, Email } from "./value-object"
+import { UserData } from "./"
 
 export class User {
 	public readonly name: string
@@ -35,5 +35,4 @@ export class User {
 
 		return right(new User(user.name, email, cpf, user.password))
 	}
-
 }

@@ -1,4 +1,4 @@
-import { Cpf } from "../../../src/domain/user"
+import { Cpf } from "../../../src/domain/user/value-object"
 
 test('Não deve criar o object value cpf, pois não possui 11 digitos', () => {
     const cpf = Cpf.create('1111111')
