@@ -1,6 +1,6 @@
-import { UserData } from '../../domain/user'
-import { UserRepository } from '../../use-cases/account/ports/user-repository'
-import Connection from './ports/connection';
+import { UserData } from '../../../domain/user'
+import { UserRepository } from '../../../use-cases/account/ports/user-repository'
+import Connection from '../ports/connection';
 
 export class UserRepositoryDatabase implements UserRepository {
 

@@ -1,5 +1,5 @@
-import { AccountRepository } from '../../use-cases/account/ports/account-repository';
-import Connection from './ports/connection';
+import { AccountRepository } from '../../../use-cases/account/ports/account-repository';
+import Connection from '../ports/connection';
 
 export class AccountRepositoryDatabase implements AccountRepository {
 
@@ -7,7 +7,6 @@ export class AccountRepositoryDatabase implements AccountRepository {
 
     save(account: any): Promise<any> {
         const query = `INSERT INTO account (user_id, balance) VALUES  (${account.user_id}, ${account.balance})`
-        console.log(query)
         return this.connection.query(query)
     }
 }
