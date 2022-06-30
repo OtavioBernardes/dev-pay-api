@@ -26,4 +26,17 @@ describe('NewAccount - UseCase', () => {
         const result = await account.perform(input)
         expect(result.isLeft()).toEqual(true)
     })
+
+    it('Deve retornar uma expection pois o cpf do usuário é invalido', async () => {
+        const account = new NewAccount(inMemoryDatabaseRepositoryUser, inMemoryDatabaseAccount, hasher)
+        const result = await account.perform({
+            name: 'Otávio Bernardes',
+            cpf: '111111111',
+            email: 'test@test.com',
+            password: 'password0123'
+        })
+        
+        expect(result.isLeft()).toEqual(true)
+        expect(result.value).toEqual('Invalid cpf')
+    })
 })
