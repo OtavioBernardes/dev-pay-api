@@ -10,7 +10,7 @@ export class NewAcccountController {
     }
 
     async handle(req: HttpRequest): Promise<any> {
-        const res = await this.usecase.perform(req.body);
+        const res = await this.usecase.execute(req.body);
 
         if (res.isLeft())
             return badRequest({ message: res.value })

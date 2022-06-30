@@ -20,7 +20,7 @@ export class NewAccount implements UseCase {
         this.hasher = hasher
     }
 
-    async perform(user: UserData): Promise<any> {
+    async execute(user: Input): Promise<any> {
 
         if (await this.userRepo.exists(user.cpf))
             return left('User already exists!')
@@ -36,9 +36,28 @@ export class NewAccount implements UseCase {
         const userData = newUserOrError.value as unknown as UserData
 
         userData.password = await this.hasher.hash(userData.password)
-        const newUser = await this.userRepo.save(userData)
 
-        await this.accountRepo.save({ user_id: newUser.insertId, balance: newAccountOrError.value.balance })
-        return right(newUserOrError.value)
+        const usuario = await this.userRepo.save(userData)
+        await this.accountRepo.save({ user_id: usuario.insertId, balance: newAccountOrError.value.balance })
+
+        const Output: Output = {
+            name: newUserOrError.value.name,
+            email: newUserOrError.value.email as unknown as string,
+            cpf: newUserOrError.value.cpf as unknown as string
+        }
+        return right(Output)
     }
+}
+
+type Input = {
+    name: string,
+    email: string,
+    cpf: string,
+    password: string
+}
+
+type Output = {
+    name: string,
+    email: string,
+    cpf: string,
 }
