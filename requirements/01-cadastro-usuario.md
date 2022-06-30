@@ -4,7 +4,7 @@ Como cliente, gostaria de poder acessar a plataforma dev-pay e realizar a abertu
 
 > ## Caso de sucesso
 
-1. ✅ Recebe uma requisição do tipo **POST** na rota **/api/user**
+1. ✅ Recebe uma requisição do tipo **POST** na rota **/api/account**
 2. ✅ Valida dados obrigatórios **name**, **email**, **password**, **cpf**.
 3. ✅ **Cria** um usuário e uma conta para o novo investidor
 4. ✅ Retorna **201**, com dados
