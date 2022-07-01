@@ -9,4 +9,9 @@ export class AccountRepositoryDatabase implements AccountRepository {
         const query = `INSERT INTO account (user_id, balance) VALUES  (${account.user_id}, ${account.balance})`
         return this.connection.query(query)
     }
+
+    credit(data: any): void {
+        const query = `UPDATE account SET balance = (balance + ${data.amount}) WHERE ID = ${data.to}`
+        this.connection.query(query)
+    }
 }

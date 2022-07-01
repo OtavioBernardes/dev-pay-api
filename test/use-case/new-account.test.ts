@@ -21,21 +21,21 @@ describe('UseCase: New Account', () => {
     const inMemoryDatabaseAccount = new AccountRepositoryInMemory()
 
     const hasher = new BcryptAdapter(8)
-    const account = new NewAccount(inMemoryDatabaseRepositoryUser, inMemoryDatabaseAccount, hasher)
+    const usecase = new NewAccount(inMemoryDatabaseRepositoryUser, inMemoryDatabaseAccount, hasher)
 
     it('Deve criar um usuário e uma conta na plataforma', async () => {
-        const result = await account.execute(input)
+        const result = await usecase.execute(input)
         expect(result.value).toEqual(Output)
     })
 
     it('Deve retornar um exception pois o usuário já está cadastrado', async () => {
-        const result = await account.execute(input)
+        const result = await usecase.execute(input)
         expect(result.isLeft()).toEqual(true)
     })
 
     it('Deve retornar uma expection pois o cpf do usuário é invalido', async () => {
-        const account = new NewAccount(inMemoryDatabaseRepositoryUser, inMemoryDatabaseAccount, hasher)
-        const result = await account.execute({
+        const usecase = new NewAccount(inMemoryDatabaseRepositoryUser, inMemoryDatabaseAccount, hasher)
+        const result = await usecase.execute({
             name: 'Otávio Bernardes',
             cpf: '111111111',
             email: 'test@test.com',

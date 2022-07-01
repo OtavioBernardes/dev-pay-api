@@ -1,4 +1,4 @@
-import { right } from "../../shared"
+import { left, right } from "../../shared"
 
 export class Account {
     balance: number = 0
@@ -13,9 +13,10 @@ export class Account {
         return this.balance
     }
 
-    public credit(amount: number): void {
+    public credit(amount: number): any {
         if (this.validate(amount))
-            this.balance += amount
+            return right(this.balance += amount)
+        return left('Invalid credit amount')
     }
 
     public debit(amount: number): void {
