@@ -1,4 +1,4 @@
-import { User } from "../../../src/domain/user"
+import { User } from "../../../src/domain/entity/user"
 
 test('Não deve criar um usuario pois o e-mail é invalido', () => {
     const user = User.create({

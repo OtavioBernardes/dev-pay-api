@@ -1,12 +1,16 @@
-import { left, right } from "../../shared"
+import { left, right } from "../../../shared"
+import { User } from "../user"
 
 export class Account {
+    user: User
     balance: number = 0
 
-    private constructor() { }
+    private constructor(user: User) {
+        this.user = user
+    }
 
-    public static create(): any {
-        return right(new Account())
+    public static create(user: User): any {
+        return right(new Account(user))
     }
 
     public getBalance(): number {

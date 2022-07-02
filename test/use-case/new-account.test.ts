@@ -14,6 +14,7 @@ const Output = {
     name: 'Otávio Bernardes',
     cpf: '11111111111',
     email: 'test@test.com',
+    account_id: 1
 }
 
 describe('UseCase: New Account', () => {

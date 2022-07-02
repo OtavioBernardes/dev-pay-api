@@ -1,4 +1,5 @@
-import { UserRepository } from '../../../use-cases/account/ports/user-repository';
+import { User } from '../../../domain/entity/user';
+import { UserRepository } from '../../../domain/ports/user-repository';
 
 export class UserRepositoryInMemory implements UserRepository {
     users: any
@@ -11,7 +12,7 @@ export class UserRepositoryInMemory implements UserRepository {
         return this.users.some((user: any) => user.cpf === cpf)
     }
 
-    save(user: any): Promise<any> {
+    save(user: User): Promise<any> {
         return this.users.push(user)
     }
 }

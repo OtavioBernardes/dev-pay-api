@@ -1,7 +1,7 @@
-import { Account } from "../../domain/account/account";
+import { Account } from "../../domain/entity/account/account";
 import { Either, left, right } from "../../shared";
 import { UseCase } from "../ports";
-import { AccountRepository } from "./ports/account-repository";
+import { AccountRepository } from "../../domain/ports/account-repository";
 
 export class CreditAccount implements UseCase {
     private accountRepo: AccountRepository
@@ -11,10 +11,10 @@ export class CreditAccount implements UseCase {
     }
 
     async execute(data: Input): Promise<any> {
-        const newAccountOrError: Either<String, Account> = Account.create()
+        const newAccountOrError = await this.accountRepo.get(data.to)
 
         if (newAccountOrError.isLeft())
-            return left(newAccountOrError.value)
+            return left('Account not found!')
 
         const resultCredit = newAccountOrError.value.credit(data.amount)
 
