@@ -5,7 +5,7 @@ export const created = (data: any): HttpResponse => ({
 	body: data
 })
 
-export const ok = (data: any): HttpResponse => ({
+export const ok = (data?: any): HttpResponse => ({
 	statusCode: 200,
 	body: data
 })
