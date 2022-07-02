@@ -21,7 +21,7 @@ export class NewAccount implements UseCase {
     }
 
     async execute(user: Input): Promise<any> {
-
+        
         if (await this.userRepo.exists(user.cpf))
             return left('User already exists!')
 
@@ -31,7 +31,7 @@ export class NewAccount implements UseCase {
         if (newUserOrError.isLeft())
             return left(newUserOrError.value)
 
-       const userId = await this.userRepo.save(newUserOrError.value)
+        const userId = await this.userRepo.save(newUserOrError.value)
 
         const newAccountOrError: Either<String, Account> = Account.create(newUserOrError.value)
         if (newAccountOrError.isLeft())
