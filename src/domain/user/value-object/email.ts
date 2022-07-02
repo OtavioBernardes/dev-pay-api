@@ -15,6 +15,6 @@ export class Email {
 
     public static validate(email: string): boolean {
         const emailValid = /\S+@\S+\.\S+/;
-        return emailValid.test(email)
+        return !!emailValid && emailValid.test(email)
     }
 }

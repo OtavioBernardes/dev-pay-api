@@ -30,6 +30,9 @@ export class User {
 		if (emailOrError.isLeft())
 			return left(emailOrError.value)
 
+		if (!user.name) return left('Invalid name!')
+		if (!user.password) return left('Invalid password!')
+
 		const cpf: Cpf = cpfOrError.value.cpf as unknown as Cpf
 		const email: Email = emailOrError.value.email as unknown as Email
 

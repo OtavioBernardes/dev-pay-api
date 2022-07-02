@@ -14,6 +14,6 @@ export class Cpf {
     }
 
     public static validate(cpf: string): boolean {
-        return cpf.length === 11
+        return !!cpf && cpf.length === 11
     }
 }
