@@ -22,7 +22,7 @@ The project was made using clean architecture </br>
 
 <p align="center">
    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://miro.medium.com/max/1400/1*0R0r00uF1RyRFxkxo3HVDg.png"/>
+      <source media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/MCR3WzK/Untitled-Diagram-drawio.png" />
       <source media="(prefers-color-scheme: light)" srcset="https://miro.medium.com/max/1400/1*0R0r00uF1RyRFxkxo3HVDg.png" />
       <img>
    </picture>
@@ -33,7 +33,7 @@ The project was made using clean architecture </br>
 Dev-pay is a project composed of an API (NodeJS) and an App (ReactJS). </br>
 The objective of this project is to simulate operations like a digital bank.
 
-Clone the app at: [Dev-pay APP](https://github.com/Mateussj/dev-pay-app") 
+Clone the app at: [Dev-pay APP](https://github.com/Mateussj/dev-pay-app) 
 
 ## :gear: Technologies
 
