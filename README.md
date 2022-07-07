@@ -22,7 +22,7 @@ This project was made using clean architecture. </br>
 
 <p align="center">
    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/MCR3WzK/Untitled-Diagram-drawio.png" />
+      <source media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/cCmdW9j/Untitled-Diagram-drawio-1.png" />
       <source media="(prefers-color-scheme: light)" srcset="https://miro.medium.com/max/1400/1*0R0r00uF1RyRFxkxo3HVDg.png" />
       <img>
    </picture>
