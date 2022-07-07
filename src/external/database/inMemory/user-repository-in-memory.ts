@@ -12,6 +12,10 @@ export class UserRepositoryInMemory implements UserRepository {
         return this.users.some((user: any) => user.cpf === cpf)
     }
 
+    async getUserByEmail(email: string): Promise<User> {
+        return this.users.filter((user: any) => user.email === email)[0]
+    }
+
     save(user: User): Promise<any> {
         return this.users.push(user)
     }
