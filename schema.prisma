@@ -4,20 +4,22 @@ generator client {
 
 model user {
     id        Int       @id @default(autoincrement())
-    name      String    @unique
+    name      String
+    cpf       String    @unique
     email     String
     password  String
     account   account[]
     createdAt DateTime  @default(now()) @map("created_at")
-    updatedAt DateTime  @updatedAt @map("updated_at")
+    updatedAt DateTime  @default(now()) @map("updated_at")
 }
 
 model account {
-    id         Int      @id @default(autoincrement())
-    user       user     @relation(fields: [user_id], references: [id])
-    user_id    Int      @unique @map("user_id")
-    created_at DateTime
-    updated_at DateTime
+    id        Int      @id @default(autoincrement())
+    balance   Float
+    user      user     @relation(fields: [user_id], references: [id])
+    user_id   Int      @unique @map("user_id")
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @default(now()) @map("updated_at")
 }
 
 datasource db {

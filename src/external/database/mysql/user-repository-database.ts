@@ -13,7 +13,7 @@ export class UserRepositoryDatabase implements UserRepository {
 
     async save(user: User): Promise<any> {
         const userDb = await this.connection.query(
-            `INSERT INTO user (name, cpf, email, password) VALUES  ('${user.name}', '${user.cpf}', '${user.email}, '${user.password}')`
+            `INSERT INTO user (name, cpf, email, password) VALUES  ('${user.name}', '${user.cpf}', '${user.email}', '${user.password}')`
         )
         return userDb.insertId
     }
