@@ -18,7 +18,7 @@
 
 # Project Overview:
 
-The project was made using clean architecture </br>
+This project was made using clean architecture. </br>
 
 <p align="center">
    <picture>
