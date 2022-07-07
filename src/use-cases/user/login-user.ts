@@ -19,6 +19,7 @@ export class Login implements UseCase {
 
     async execute(data: Input): Promise<any> {
         const user = await this.userRepo.getUserByEmail(data.email)
+
         if (await this.hasher.compare(data.password, user.password)) {
             const token: Output = {
                 token: await this.jwtHasher.encrypt(
@@ -30,7 +31,6 @@ export class Login implements UseCase {
             }
             return right(token)
         }
-
         return left('Password does not match!')
     }
 }

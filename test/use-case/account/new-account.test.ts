@@ -1,7 +1,7 @@
-import { BcryptAdapter } from "../../src/external/cryptography/bcrypt-adapter";
-import { AccountRepositoryInMemory } from "../../src/external/database/inMemory/account-repository-in-memory";
-import { UserRepositoryInMemory } from "../../src/external/database/inMemory/user-repository-in-memory";
-import { NewAccount } from "../../src/use-cases/account/new-account";
+import { BcryptAdapter } from "../../../src/external/cryptography/bcrypt-adapter";
+import { AccountRepositoryInMemory } from "../../../src/external/database/inMemory/account-repository-in-memory";
+import { UserRepositoryInMemory } from "../../../src/external/database/inMemory/user-repository-in-memory";
+import { NewAccount } from "../../../src/use-cases/account/new-account";
 
 const input = {
     name: 'Otávio Bernardes',

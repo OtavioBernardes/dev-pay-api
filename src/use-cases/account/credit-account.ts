@@ -1,5 +1,4 @@
-import { Account } from "../../domain/entity/account/account";
-import { Either, left, right } from "../../shared";
+import { left, right } from "../../shared";
 import { UseCase } from "../ports";
 import { AccountRepository } from "../../domain/ports/account-repository";
 

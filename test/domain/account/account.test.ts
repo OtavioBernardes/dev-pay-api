@@ -10,7 +10,6 @@ const user = User.create({
 
 test('Deve criar uma conta com saldo zerado', () => {
     const account = Account.create(user).value
-    console.log(account)
     expect(account.getBalance()).toBe(0)
 })
 
