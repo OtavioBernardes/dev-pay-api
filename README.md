@@ -50,10 +50,12 @@ Clone the app at: [Dev-pay APP](https://github.com/Mateussj/dev-pay-app)
 
 1. Clone this repo: `git clone https://github.com/OtavioBernardes/dev-pay-api`
 2. Move to the directory: `cd dev-pay-api`
-3. Install all dependencies `npm install`
-4. Run `npx prisma migrate dev`
-5. Run `npm run dev`
-6. The server runs on: http://localhost:3333
+3. Copy the .env.example file as .env
+4. Add a SECRET_KEY in the .env file
+5. Install all dependencies `npm install`
+6. Run `npx prisma migrate dev`
+7. Run `npm run dev`
+8. The server runs on: http://localhost:3333
 
 ## :page_facing_up: License
 
