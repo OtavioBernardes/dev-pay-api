@@ -14,7 +14,6 @@ const Output = {
     name: 'Otávio Bernardes',
     cpf: '11111111111',
     email: 'test@test.com',
-    account_id: 1
 }
 
 describe('UseCase: New Account', () => {
@@ -26,7 +25,10 @@ describe('UseCase: New Account', () => {
 
     it('Deve criar um usuário e uma conta na plataforma', async () => {
         const result = await usecase.execute(input)
-        expect(result.value).toEqual(Output)
+        const {account_id, ...data} = result.value
+
+        expect(typeof account_id).toEqual('number')
+        expect(data).toEqual(Output)
     })
 
     it('Deve retornar um exception pois o usuário já está cadastrado', async () => {
@@ -42,7 +44,7 @@ describe('UseCase: New Account', () => {
             email: 'test@test.com',
             password: 'password0123'
         })
-        
+
         expect(result.isLeft()).toEqual(true)
         expect(result.value).toEqual('Invalid cpf')
     })
