@@ -5,36 +5,35 @@ import { UserRepositoryInMemory } from "../../src/external/database/inMemory/use
 import { NewAccount } from "../../src/use-cases/account/new-account"
 import { Login } from "../../src/use-cases/user/login"
 
-const inputNewAccount = {
+const input = {
     name: 'Otávio Bernardes',
     cpf: '11111111111',
     email: 'test@test.com',
     password: 'password0123'
 }
 
-
 describe('UseCase: Logging', () => {
     const inMemoryDatabaseRepositoryUser = new UserRepositoryInMemory()
     const inMemoryDatabaseAccount = new AccountRepositoryInMemory()
-    const hasher = new BcryptAdapter(8)
-    const usecase_new_account = new NewAccount(inMemoryDatabaseRepositoryUser, inMemoryDatabaseAccount, hasher)
 
+    const hasher = new BcryptAdapter(8)
     const encrypt = new JsonwebtokenAdapter('my-secret-test')
+
+    const usecase_new_account = new NewAccount(inMemoryDatabaseRepositoryUser, inMemoryDatabaseAccount, hasher)
     const usecase = new Login(inMemoryDatabaseRepositoryUser, hasher, encrypt)
 
     it('Deve realizar o login na plataforma e retornar um token', async () => {
-        await usecase_new_account.execute(inputNewAccount)
+        await usecase_new_account.execute(input)
+
         const result = await usecase.execute({
             email: 'test@test.com',
             password: 'password0123'
         })
-
         expect(result.isRight()).toEqual(true)
         expect(typeof result.value.token).toEqual('string')
     })
 
     it('Deve retornar um erro pois os dados de login são invalidos', async () => {
-        await usecase_new_account.execute(inputNewAccount)
         const result = await usecase.execute({
             email: 'test@test.com',
             password: 'password01234'
