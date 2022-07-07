@@ -17,21 +17,23 @@
 </p>
 
 # Project Overview:
+
+The project was made using clean architecture </br>
+
 <p align="center">
    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/OtavioBernardes/clean-ts-api/master/public/img/architecture-dark.png"/>
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/OtavioBernardes/clean-ts-api/master/public/img/architecture-light.png" />
+      <source media="(prefers-color-scheme: dark)" srcset="https://miro.medium.com/max/1400/1*0R0r00uF1RyRFxkxo3HVDg.png"/>
+      <source media="(prefers-color-scheme: light)" srcset="https://miro.medium.com/max/1400/1*0R0r00uF1RyRFxkxo3HVDg.png" />
       <img>
    </picture>
 </p>
 
-
 ## :question: About
 
 Dev-pay is a project composed of an API (NodeJS) and an App (ReactJS). </br>
-The objective of the project is to simulate operations like a digital bank.
+The objective of this project is to simulate operations like a digital bank.
 
-Clone the app at: <link href="https://github.com/Mateussj/dev-pay-app">Dev-Pay APP</link>
+Clone the app at: [Dev-pay APP](https://github.com/Mateussj/dev-pay-app") 
 
 ## :gear: Technologies
 
