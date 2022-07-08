@@ -1,6 +1,6 @@
 import { badRequest, created, forbiddenRequest } from "../helpers";
 import { HttpRequest } from "../ports"
-import { Login } from "../../use-cases/user/login-user";
+import { Login } from "../../use-cases/login";
 
 export class LoginController {
     private usecase: Login;

@@ -1,6 +1,6 @@
 import { badRequest, created } from "../helpers";
 import { HttpRequest } from "../ports"
-import { NewAccount } from "../../use-cases/account/new-account";
+import { NewAccount } from "../../use-cases/new-account";
 
 export class NewAcccountController {
     private usecase: NewAccount;

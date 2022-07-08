@@ -2,8 +2,8 @@ import { BcryptAdapter } from "../../../src/external/cryptography/bcrypt-adapter
 import { JsonwebtokenAdapter } from "../../../src/external/cryptography/jsonwebtoken-adapter"
 import { AccountRepositoryInMemory } from "../../../src/external/database/inMemory/account-repository-in-memory"
 import { UserRepositoryInMemory } from "../../../src/external/database/inMemory/user-repository-in-memory"
-import { NewAccount } from "../../../src/use-cases/account/new-account"
-import { Login } from "../../../src/use-cases/user/login-user"
+import { NewAccount } from "../../../src/use-cases/new-account"
+import { Login } from "../../../src/use-cases/login"
 
 const input = {
     name: 'Otávio Bernardes',

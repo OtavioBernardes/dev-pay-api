@@ -1,6 +1,6 @@
-import { UserRepository } from "../../domain/ports/user-repository";
-import { left, right } from "../../shared";
-import { Hasher, UseCase, Encrypter } from "../ports";
+import { UserRepository } from "../domain/ports/user-repository";
+import { left, right } from "../shared";
+import { Hasher, UseCase, Encrypter } from "./ports";
 
 export class Login implements UseCase {
     private userRepo: UserRepository

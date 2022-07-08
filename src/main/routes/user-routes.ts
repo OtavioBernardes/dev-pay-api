@@ -1,9 +1,9 @@
 import { Router } from 'express'
 import { adaptRoute } from '../adapters/express-route-adapter'
-import { makeNewLogin } from '../factories/controllers/user/login'
+import { MakeLoginController } from '../factories/controllers/login'
 
 const router = Router()
 
-router.post('/user/login', adaptRoute(makeNewLogin()))
+router.post('/user/login', adaptRoute(MakeLoginController()))
 
 export default router

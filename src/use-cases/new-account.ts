@@ -1,9 +1,9 @@
-import { User } from "../../domain/entity/user"
-import { UseCase, Hasher } from "../ports"
-import { Either, left, right } from "../../shared"
-import { Account } from "../../domain/entity/account/account"
-import { UserRepository } from "../../domain/ports/user-repository"
-import { AccountRepository } from "../../domain/ports/account-repository"
+import { User } from "../domain/entity/user"
+import { UseCase, Hasher } from "./ports"
+import { Either, left, right } from "../shared"
+import { Account } from "../domain/entity/account/account"
+import { UserRepository } from "../domain/ports/user-repository"
+import { AccountRepository } from "../domain/ports/account-repository"
 
 export class NewAccount implements UseCase {
     private userRepo: UserRepository

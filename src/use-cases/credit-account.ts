@@ -1,6 +1,6 @@
-import { left, right } from "../../shared";
-import { UseCase } from "../ports";
-import { AccountRepository } from "../../domain/ports/account-repository";
+import { left, right } from "../shared";
+import { UseCase } from "./ports";
+import { AccountRepository } from "../domain/ports/account-repository";
 
 export class CreditAccount implements UseCase {
     private accountRepo: AccountRepository

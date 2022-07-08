@@ -1,6 +1,6 @@
 import { badRequest, ok } from "../helpers";
 import { HttpRequest } from "../ports"
-import { CreditAccount } from "../../use-cases/account/credit-account";
+import { CreditAccount } from "../../use-cases/credit-account";
 
 export class CreditAccountController {
     private usecase: CreditAccount;
