@@ -17,5 +17,4 @@ export class NewAcccountController {
 
         return created(res.value);
     }
-
 }

@@ -10,9 +10,10 @@ export class LoginController {
     }
 
     async handle(req: HttpRequest): Promise<any> {
-    
-        if (!await this.validate(req.body))
-            return badRequest({ message: 'Invalid request!' })
+        const validate = await this.validate(req.body)
+
+        if (!validate.isValid)
+            return badRequest({ message: validate.message })
 
         const res = await this.usecase.execute(req.body);
 
@@ -22,9 +23,18 @@ export class LoginController {
         return created(res.value);
     }
 
-    async validate(data: any): Promise<boolean> {
-        const emailValidate = !!data.email && typeof data.email === 'string'
-        const passwordValidate = !!data.password && typeof data.password === 'string'
-        return emailValidate && passwordValidate
+    async validate(data: any): Promise<{ isValid: boolean; message: string }> {
+        const messages: string[] = []
+
+        if (!data.email || typeof data.email !== 'string')
+            messages.push('Email is invalid!')
+
+            if (!data.password || typeof data.password !== 'string')
+            messages.push('Password is invalid')
+
+        if (messages.length > 0)
+            return { isValid: false, message: messages.reduce((message) => message) }
+
+        return { isValid: true, message: '' }
     }
 }
