@@ -11,7 +11,6 @@ export class CreditAccountController {
 
     async handle(req: HttpRequest): Promise<any> {
         const validate = await this.validate(req.body)
-        console.log(validate)
 
         if (!validate.isValid)
             return badRequest({ message: validate.message })

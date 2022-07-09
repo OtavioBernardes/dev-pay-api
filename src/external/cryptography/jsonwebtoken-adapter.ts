@@ -10,6 +10,7 @@ export class JsonwebtokenAdapter implements Encrypter, Decrypter {
     }
 
     async decrypt(ciphertext: string): Promise<string> {
-        return jwt.verify(ciphertext, this.secret) as any
+        const result = jwt.verify(ciphertext, this.secret) as any
+        return result.id
     }
 }
