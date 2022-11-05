@@ -3,5 +3,6 @@ import { AuthMiddleware } from "../../../presentation/middlewares/auth-middlewar
 import { MakeDbLoadUserByToken } from "../use-cases/load-user-by-token";
 
 export const makeAuthMiddleware = (): Controller => {
+
     return new AuthMiddleware(MakeDbLoadUserByToken())
 }

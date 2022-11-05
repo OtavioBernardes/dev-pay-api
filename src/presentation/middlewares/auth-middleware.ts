@@ -5,15 +5,13 @@ import { LoadUserByToken } from '../../use-cases/load-user-by-token';
 export class AuthMiddleware implements Middleware {
   constructor(
     private readonly loadUserByToken: LoadUserByToken,
-    private readonly role?: string
   ) { }
 
   async handle(request: AuthMiddleware.Request): Promise<HttpResponse> {
     try {
       let { accessToken } = request
-
       if (accessToken) {
-        const account = await this.loadUserByToken.execute(accessToken.substring(7, accessToken.length), this.role)
+        const account = await this.loadUserByToken.execute(accessToken.substring(7, accessToken.length))
         if (account) {
           return ok({ accountId: account.id })
         }
