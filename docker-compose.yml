@@ -22,8 +22,15 @@ services:
     networks:
       - production-network
 
+  redis:
+    image: redis:7.0-alpine
+    restart: always
+    ports: 
+      - $REDIS_PORT:$REDIS_PORT
+
   api:
     depends_on:
+      - redis
       - mysqldb
     build: ./
     restart: always
