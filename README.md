@@ -50,9 +50,10 @@ Clone the app at: [Dev-pay APP](https://github.com/Mateussj/dev-pay-app)
 
 1. Clone this repo: `git clone https://github.com/OtavioBernardes/dev-pay-api`
 2. Move to the directory: `cd dev-pay-api`
-3. Copy the .env.example file as .env
-4. Add a SECRET_KEY in the .env file
-5. Install all dependencies `npm install`
+3. Copy the .env.example file as .env: `cp .env.example .env`
+4. Add a SECRET_KEY and DB_PASSWORD in the .env file
+5. Install all dependencies: `npm install`
+6. Run mysqlDb and Redis service with docker compose: `docker-compose up mysqldb -d` `docker-compose up redis -d`
 6. Run `npx prisma migrate dev`
 7. Run `npm run dev`
 8. The server runs on: http://localhost:3333
