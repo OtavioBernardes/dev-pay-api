@@ -1,5 +1,5 @@
-import { Account } from "../../../src/domain/entity/account/account"
-import { User } from "../../../src/domain/entity/user"
+import { Account } from "../../../../src/domain/entity/account/account"
+import { User } from "../../../../src/domain/entity/user"
 
 const user = User.create({
     name: 'Otávio Bernardes',

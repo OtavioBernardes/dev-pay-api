@@ -1,8 +1,8 @@
-import { BcryptAdapter } from "../../../src/external/cryptography/bcrypt-adapter"
-import { AccountRepositoryInMemory } from "../../../src/external/database/inMemory/account-repository-in-memory"
-import { UserRepositoryInMemory } from "../../../src/external/database/inMemory/user-repository-in-memory"
-import { CreditAccount } from "../../../src/use-cases/credit-account"
-import { NewAccount } from "../../../src/use-cases/new-account"
+import { BcryptAdapter } from "../../../../src/external/cryptography/bcrypt-adapter"
+import { AccountRepositoryInMemory } from "../../../../src/external/database/inMemory/account-repository-in-memory"
+import { UserRepositoryInMemory } from "../../../../src/external/database/inMemory/user-repository-in-memory"
+import { CreditAccount } from "../../../../src/use-cases/credit-account"
+import { NewAccount } from "../../../../src/use-cases/new-account"
 
 describe('UseCase: Credit Account', () => {
     const inMemoryDatabaseRepositoryUser = new UserRepositoryInMemory()
