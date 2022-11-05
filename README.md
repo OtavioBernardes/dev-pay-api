@@ -44,7 +44,7 @@ Clone the app at: [Dev-pay APP](https://github.com/Mateussj/dev-pay-app)
 ⚙️ <strong>Serverless Framework</strong> —> The Easy & Open Way To Build Serverless Apps;</br>
 📚 <strong>Mysql</strong> —> Database</br>
 📚 <strong>Prisma ORM</strong> —> ORM Database</br>
-
+📚 <strong>Redis</strong> —> Cache</br>
 
 ## :rocket: Getting Started
 
