@@ -51,13 +51,24 @@ Clone the app at: [Dev-pay APP](https://github.com/Mateussj/dev-pay-app)
 1. Clone this repo: `git clone https://github.com/OtavioBernardes/dev-pay-api`
 2. Move to the directory: `cd dev-pay-api`
 3. Copy the .env.example file as .env: `cp .env.example .env`
-4. Add a SECRET_KEY and DB_PASSWORD in the .env file
+4. Add .env values
 5. Install all dependencies: `npm install`
 6. Run mysqlDb and Redis service with docker compose: `docker-compose up mysqldb -d` `docker-compose up redis -d`
 6. Run `npx prisma migrate dev`
 7. Run `npm run dev`
 8. The server runs on: http://localhost:3333
-
+9. Run a request to create a new account in:
+```
+curl --request POST \
+  --url http://localhost:3333/api/account \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"name": "Otávio Bernardes",
+	"email": "otavio@gmail.com",
+	"password": "test@123",
+	"cpf": "11111111100"
+}'
+```
 ## :page_facing_up: License
 
 **Free Software, Hell Yeah!**
