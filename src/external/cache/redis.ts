@@ -3,8 +3,10 @@ import { Cache } from '../../use-cases/ports/cache';
 
 export default class RedisCache implements Cache {
     private cache: RedisClientType;
+    private ttl: number;
 
-    constructor(host: string, port: number, private ttl: number) {
+    constructor(host: string, port: number, ttl: number) {
+        this.ttl = ttl;
         this.cache = createClient({ url: `redis://${host}:${port}` });
     }
 
@@ -30,14 +32,13 @@ export default class RedisCache implements Cache {
 
     async get(key: string): Promise<string> {
         const keyValue = await this.cache.get(key);
-
         if (keyValue) return keyValue;
 
         throw { notFound: true };
     }
 
     async set(key: string): Promise<boolean> {
-        const resultSet = await this.cache.set(key, key);
+        const resultSet = await this.cache.set(key, key, { PX: this.ttl });
         return !resultSet ? false : !!resultSet
     }
 

@@ -11,7 +11,7 @@ export default class CacheFactory {
             this.cache = new RedisCache(
                 process.env.REDIS_HOST || "localhost",
                 parseInt(process.env.REDIS_PORT || "6379"),
-                1000);
+                60*60*100);
             this.cache.connect();
         }
 
