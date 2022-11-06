@@ -33,7 +33,7 @@ export class Login implements UseCase {
                     })
                 )
             }
-            
+
             await this.cache.set(token.token);
             return right(token)
         }

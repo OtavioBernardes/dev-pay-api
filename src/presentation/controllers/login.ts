@@ -10,6 +10,7 @@ export class LoginController {
     }
 
     async handle(req: HttpRequest): Promise<any> {
+
         const validate = await this.validate(req.body)
 
         if (!validate.isValid)

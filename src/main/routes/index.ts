@@ -4,7 +4,7 @@ import UserRouter from './user-routes'
 
 const router = Router()
 
-router.post('/api/', (request, response) => {
+router.post('/api/', (_, response) => {
 	return response.send({
 		message: `Hello World`,
 	});

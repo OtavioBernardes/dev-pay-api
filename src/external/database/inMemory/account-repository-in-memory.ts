@@ -10,7 +10,7 @@ export class AccountRepositoryInMemory implements AccountRepository {
 
     async save(user_id: number, account: Account): Promise<number> {
         const id = Math.floor(Math.random() * 65536);
-        this.accounts.push({ ...account, id })
+        this.accounts.push({ ...account, id, user_id })
         return id
     }
 
