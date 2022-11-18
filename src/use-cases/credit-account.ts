@@ -11,7 +11,6 @@ export class CreditAccount implements UseCase {
 
     async execute(data: Input): Promise<any> {
         const newAccountOrError = await this.accountRepo.get(data.to)
-
         if (newAccountOrError.isLeft())
             return left('Account not found!')
 

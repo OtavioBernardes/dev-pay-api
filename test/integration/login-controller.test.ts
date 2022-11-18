@@ -39,7 +39,25 @@ describe("LoginUseCaseController", () => {
     });
 
     it("Should return 200 with token", async () => {
-        repository.getUserByEmail.mockImplementation(() => { return { name: "test", email: "test@example.com", password: "test@123" } })
+        repository.getUserByEmail.mockImplementationOnce(() => { return { name: "test", email: "test@example.com", password: "test@123" } })
+        return new Promise((done) => {
+            server
+                .post('/api/user/login')
+                .send({
+                    email: "test@example.com",
+                    password: "test@123"
+                })
+                .expect(200)
+                .end((_, req) => {
+                    expect(req.body).toHaveProperty("token");
+                    done(undefined);
+                });
+        });
+    })
+
+    it("Should return 404 because password doesn't match", async () => {
+        repository.getUserByEmail.mockImplementationOnce(() => { return { name: "test", email: "test@example.com", password: "test@123" } })
+        hasher.compare.mockImplementationOnce(() => false)
         return new Promise((done) => {
             server
                 .post('/api/user/login')
