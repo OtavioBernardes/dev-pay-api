@@ -5,7 +5,8 @@ import express from 'express'
 
 type MockServerOptions = {
     loginUseCase?: any;
-    creditUseCase?: any
+    creditUseCase?: any;
+    newAccountUseCase?: any;
 }
 
 const routes = async (options: MockServerOptions): Promise<Router> => {
@@ -13,7 +14,8 @@ const routes = async (options: MockServerOptions): Promise<Router> => {
 
     router.post('/api/user/login', adaptRoute(options.loginUseCase));
     router.post('/api/account/credit', adaptRoute(options.creditUseCase));
-
+    router.post('/api/account', adaptRoute(options.newAccountUseCase));
+    
     return router;
 };
 
