@@ -37,7 +37,7 @@ export class Login implements UseCase {
             await this.cache.set(token.token);
             return right(token)
         }
-        return left('Password does not match!')
+        return left('Email and Password does not match!')
     }
 }
 
