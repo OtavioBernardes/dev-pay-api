@@ -2,11 +2,11 @@ import { NewAccount } from "../../../use-cases/new-account"
 import { MysqlAdapter } from "../../../external/database/adapters"
 import { UserRepositoryDatabase } from "../../../external/database/mysql"
 import { AccountRepositoryDatabase } from "../../../external/database/mysql"
-import { BcryptAdapter } from "../../../external/cryptography/bcrypt-adapter"
 import Connection from "src/external/database/ports/connection"
 import { Hasher } from "src/use-cases/ports"
 import { UserRepository } from "src/domain/ports/user-repository"
 import { AccountRepository } from "src/domain/ports/account-repository"
+import { FakeBcryptAdapter } from "../../../external/cryptography/fake-Bcrypt"
 
 export const MakeDbNewAccount = (
     paramConnection?: Connection,
@@ -18,6 +18,6 @@ export const MakeDbNewAccount = (
     const connection = paramConnection ? paramConnection : new MysqlAdapter()
     const inDatabaseRepositoryUser = paramInDatabaseRepositoryUser ? paramInDatabaseRepositoryUser : new UserRepositoryDatabase(connection);
     const inDatabaseRepositoryAccount = paramInDatabaseRepositoryAccount ? paramInDatabaseRepositoryAccount : new AccountRepositoryDatabase(connection);
-    const hasher = paramHasher ? paramHasher : new BcryptAdapter(8)
+    const hasher = paramHasher ? paramHasher : new FakeBcryptAdapter()
     return new NewAccount(inDatabaseRepositoryUser, inDatabaseRepositoryAccount, hasher)
 }
