@@ -6,7 +6,7 @@ import Connection from "src/external/database/ports/connection"
 import { Hasher } from "src/use-cases/ports"
 import { UserRepository } from "src/domain/ports/user-repository"
 import { AccountRepository } from "src/domain/ports/account-repository"
-import { FakeBcryptAdapter } from "../../../external/cryptography/fake-Bcrypt"
+import { BcryptAdapter } from "../../../external/cryptography/bcrypt-adapter"
 
 export const MakeDbNewAccount = (
     paramConnection?: Connection,
@@ -18,6 +18,6 @@ export const MakeDbNewAccount = (
     const connection = paramConnection ? paramConnection : new MysqlAdapter()
     const inDatabaseRepositoryUser = paramInDatabaseRepositoryUser ? paramInDatabaseRepositoryUser : new UserRepositoryDatabase(connection);
     const inDatabaseRepositoryAccount = paramInDatabaseRepositoryAccount ? paramInDatabaseRepositoryAccount : new AccountRepositoryDatabase(connection);
-    const hasher = paramHasher ? paramHasher : new FakeBcryptAdapter()
+    const hasher = paramHasher ? paramHasher : new BcryptAdapter(8)
     return new NewAccount(inDatabaseRepositoryUser, inDatabaseRepositoryAccount, hasher)
 }
