@@ -49,12 +49,12 @@ describe("CreditAccountController", () => {
                 .end((_, req) => {
                     expect(req.statusCode).toEqual(200)
                     expect(req.body).toBe("")
-                    done(undefined)
+                    done(true)
                 })
         })
     })
 
-    it("should return 404 because account does not exists", async () => {
+    it("should return 400 because account does not exists", async () => {
 
         repository.get.mockImplementation(() => left("Account not found"))
         return new Promise((done) => {
@@ -69,7 +69,26 @@ describe("CreditAccountController", () => {
                     expect(req.statusCode).toEqual(400)
                     expect(req.body).toHaveProperty("message")
                     expect(req.body.message).toBe('Account not found!')
-                    done(undefined)
+                    done(true)
+                })
+        })
+    })
+
+    it("should return 400 because bad request", async () => {
+
+        repository.get.mockImplementation(() => left("Account not found"))
+        return new Promise((done) => {
+            server
+                .post("/api/account/credit")
+                .send({
+                    amount: 100
+                })
+                .expect(400)
+                .end((_, req) => {
+                    expect(req.statusCode).toEqual(400)
+                    expect(req.body).toHaveProperty("message")
+                    expect(req.body.message).toBe('To is invalid')
+                    done(true)
                 })
         })
     })

@@ -25,7 +25,7 @@ export const mockApp = async (options: MockServerOptions): Promise<any> => {
     app.use(express.json())
     app.use(await routes(options))
 
-    return app.listen(3333, () => console.log('listening'));
+    return app;
 };
 
 export const mockServer = async (options: MockServerOptions): Promise<supertest.SuperTest<supertest.Test>> => {

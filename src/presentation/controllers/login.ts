@@ -18,9 +18,9 @@ export class LoginController {
 
         const res = await this.usecase.execute(req.body);
 
-        if (res.isLeft())
+        if (res.isLeft()) 
             return forbiddenRequest({ message: res.value })
-
+        
         return created(res.value);
     }
 
@@ -30,7 +30,7 @@ export class LoginController {
         if (!data.email || typeof data.email !== 'string')
             messages.push('Email is invalid!')
 
-            if (!data.password || typeof data.password !== 'string')
+        if (!data.password || typeof data.password !== 'string')
             messages.push('Password is invalid')
 
         if (messages.length > 0)

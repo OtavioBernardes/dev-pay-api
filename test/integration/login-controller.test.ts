@@ -39,8 +39,12 @@ describe("LoginUseCaseController", () => {
     });
 
     it("Should return 200 with token", async () => {
-        repository.getUserByEmail.mockImplementationOnce(() => { return { name: "test", email: "test@example.com", password: "test@123" } })
-        return new Promise((done) => {
+        hasher.compare.mockImplementationOnce(() => true)
+        repository.getUserByEmail.mockImplementationOnce(() => {
+            return { name: "test", email: "test@example.com", password: "test@123" }
+        })
+
+        return await new Promise((done) => {
             server
                 .post('/api/user/login')
                 .send({
@@ -50,15 +54,34 @@ describe("LoginUseCaseController", () => {
                 .expect(200)
                 .end((_, req) => {
                     expect(req.body).toHaveProperty("token");
-                    done(undefined);
+                    done(true);
                 });
         });
     })
 
-    it("Should return 404 because password doesn't match", async () => {
-        repository.getUserByEmail.mockImplementationOnce(() => { return { name: "test", email: "test@example.com", password: "test@123" } })
+    it("Should return 400 because bad request", async () => {
+        return await new Promise((done) => {
+            server
+                .post('/api/user/login')
+                .send({
+                    email: "test@example.com"
+                })
+                .expect(400)
+                .end((_, req) => {
+                    expect(req.statusCode).toEqual(400)
+                    expect(req.body.message).toEqual("Password is invalid")
+                    done(true);
+                });
+        });
+    })
+
+    it("Should return 403 because password doesn't match", async () => {
         hasher.compare.mockImplementationOnce(() => false)
-        return new Promise((done) => {
+        repository.getUserByEmail.mockImplementationOnce(() => {
+            return { name: "test", email: "test@example.com", password: "test@123" }
+        })
+
+        return await new Promise((done) => {
             server
                 .post('/api/user/login')
                 .send({
@@ -67,8 +90,8 @@ describe("LoginUseCaseController", () => {
                 })
                 .expect(200)
                 .end((_, req) => {
-                    expect(req.body).toHaveProperty("token");
-                    done(undefined);
+                    expect(req.statusCode).toEqual(403)
+                    done(true);
                 });
         });
     })

@@ -61,7 +61,7 @@ describe ("NewAccountUseCaseController", () => {
                     email: "john@example.com",
                     cpf: "11111111111"
                 })
-                done(undefined)
+                done(true)
             })
         })
     })
@@ -81,7 +81,7 @@ describe ("NewAccountUseCaseController", () => {
             .expect(400)
             .end((_, req) => {
                 expect(req.statusCode).toEqual(400)
-                done(undefined)
+                done(true)
             })
         })
     })
@@ -101,7 +101,7 @@ describe ("NewAccountUseCaseController", () => {
             .expect(400)
             .end((_, req) => {
                 expect(req.statusCode).toEqual(400)
-                done(undefined)
+                done(true)
             })
         })
     })
@@ -121,7 +121,7 @@ describe ("NewAccountUseCaseController", () => {
             .expect(400)
             .end((_, req) => {
                 expect(req.statusCode).toEqual(400)
-                done(undefined)
+                done(true)
             })
         })
     })
@@ -141,7 +141,7 @@ describe ("NewAccountUseCaseController", () => {
             .expect(400)
             .end((_, req) => {
                 expect(req.statusCode).toEqual(400)
-                done(undefined)
+                done(true)
             })
         })
     })
