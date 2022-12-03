@@ -17,7 +17,7 @@
     "typeorm": "ts-node ./node_modules/typeorm/cli -d ./development/typeorm.config.ts",
     "migrations": "npm run typeorm migration:run",
     "test:e2e": "jest --bail --forceExit --passWithNoTests \"test/e2e/.*\\.test\\.ts\"",
-    "test:e2e:ci": "sudo docker compose -f ./development/docker-compose.yml up -d && npm run migrations && npm run test:e2e"
+    "test:e2e:ci": "docker-compose -f ./development/docker-compose.yml up -d && npm run migrations && npm run test:e2e"
   },
   "keywords": [],
   "author": "Otávio Bernardes",

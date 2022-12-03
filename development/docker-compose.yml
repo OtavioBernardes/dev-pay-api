@@ -12,12 +12,14 @@ services:
       - 3306:3306
     command: --init-file /data/application/init.sql       
     volumes:
-      - ./init.sql:/data/application/init.sql
+      - ../development/init.sql:/data/application/init.sql
+
   redis:
     image: redis:5.0.6
     restart: always
     ports: 
       - 6379:6379
+
   api:
     image: node:16.18.1-alpine3.15
     volumes:
@@ -25,6 +27,9 @@ services:
     env_file: ../.env
     working_dir: /dev-pay
     depends_on:
+      - redis
+      - database
+    links:
       - redis
       - database
     restart: always
@@ -41,4 +46,4 @@ services:
       - DB_URL='mysql://root:test@123@database:3306/dev_invest'
     ports:
       - 3333:3333
-    command: ash -c "rm -rf ./node_modules && npm install && npm run dev"
+    command: ash -c "npm install && npm run dev"
