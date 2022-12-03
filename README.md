@@ -53,7 +53,7 @@ Clone the app at: [Dev-pay APP](https://github.com/Mateussj/dev-pay-app)
 3. Copy the .env.example file as .env: `cp .env.example .env`
 4. Add .env values
 5. Install all dependencies: `npm install`
-6. Run docker compose: `docker-compose up -d`
+6. Run docker compose: `docker-compose -f ./development/docker-compose.yml up`
 6. Run `npm run migration`
 7. Run `npm run dev`
 8. The server runs on: http://localhost:3333
