@@ -44,6 +44,6 @@ describe('UseCase: Logging', () => {
             password: 'password01234'
         })
         expect(result.isLeft()).toEqual(true)
-        expect(result.value).toEqual('Password does not match!')
+        expect(result.value).toEqual('Email and Password does not match!')
     })
 })
