@@ -43,7 +43,7 @@ Clone the app at: [Dev-pay APP](https://github.com/Mateussj/dev-pay-app)
 🌐 <strong>Express</strong> —> Web framework for Node.js</br>
 ⚙️ <strong>Serverless Framework</strong> —> The Easy & Open Way To Build Serverless Apps;</br>
 📚 <strong>Mysql</strong> —> Database</br>
-📚 <strong>Prisma ORM</strong> —> ORM Database</br>
+📚 <strong>TypeORM</strong> —> ORM Database</br>
 📚 <strong>Redis</strong> —> Cache</br>
 
 ## :rocket: Getting Started
@@ -53,8 +53,8 @@ Clone the app at: [Dev-pay APP](https://github.com/Mateussj/dev-pay-app)
 3. Copy the .env.example file as .env: `cp .env.example .env`
 4. Add .env values
 5. Install all dependencies: `npm install`
-6. Run mysqlDb and Redis service with docker compose: `docker-compose up mysqldb -d` `docker-compose up redis -d`
-6. Run `npx prisma migrate dev`
+6. Run docker compose: `docker-compose up -d`
+6. Run `npm run migration`
 7. Run `npm run dev`
 8. The server runs on: http://localhost:3333
 9. Run a request to create a new account in:
