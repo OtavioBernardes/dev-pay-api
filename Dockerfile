@@ -5,7 +5,7 @@ WORKDIR /home/Development/dev-pay-api
 COPY package.json .
 
 COPY .env .
-RUN npm ci
+RUN npm install
 
 COPY . .
 
