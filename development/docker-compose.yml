@@ -10,9 +10,9 @@ services:
       - MYSQL_DATABASE=dev_invest
     ports:
       - 3306:3306
-    command: --init-file /data/application/init.sql       
+    command: --init-file /data/application/database-init.sql       
     volumes:
-      - ../development/database-init.sql:/data/application/init.sql
+      - ../development/database-init.sql:/data/application/database-init.sql
 
   redis:
     image: redis:5.0.6
@@ -27,23 +27,12 @@ services:
     env_file: ../.env
     working_dir: /dev-pay
     depends_on:
-      - redis
       - database
+      - redis
     links:
-      - redis
       - database
+      - redis
     restart: always
-    environment:
-      - SECRET_KEY=fakeSecretKey
-      - HOST_PORT=3333
-      - DB_HOST=database
-      - DB_USER=root
-      - DB_PASSWORD=test@123
-      - DB_NAME=dev_invest
-      - DB_PORT=3306
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - DB_URL='mysql://root:test@123@database:3306/dev_invest'
     ports:
       - 3333:3333
     command: ash -c "npm install && npm run dev"
