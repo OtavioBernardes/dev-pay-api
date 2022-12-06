@@ -24,4 +24,4 @@ jobs:
         run: npm run test:integration
 
       - name: Run e2e tests
-        run: npm run test:e2e:ci
+        run: cp sample.env .env && npm run test:e2e:ci
