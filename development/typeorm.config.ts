@@ -8,6 +8,5 @@ export default new DataSource({
   username: "root",
   password: "test@123",
   database: "dev_invest",
-  migrations: [__dirname + './development/migrations/*{.ts,.js}'],
+  migrations: [__dirname + '../migrations/*{.ts,.js}'],
 } as DataSourceOptions);
-  
