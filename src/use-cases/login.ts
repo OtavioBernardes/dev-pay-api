@@ -22,24 +22,26 @@ export class Login implements UseCase {
     }
 
     async execute(data: Input): Promise<any> {
-        const user = await this.userRepo.getUserByEmail(data.email)
+        try {
+            const user = await this.userRepo.getUserByEmail(data.email)
+            if (!await this.hasher.compare(data.password, user.password)) {
+                return left('Email and Password does not match!')
+            }
 
-        // @ts-ignore
-        if (user.isLeft() || await this.hasher.compare(data.password, user.password)) {
-            return left('Email and Password does not match!')
+            const token: Output = {
+                token: await this.jwtHasher.encrypt(
+                    JSON.stringify({
+                        name: user.name,
+                        email: user.email
+                    })
+                )
+            }
+    
+            await this.cache.set(token.token);
+            return right(token)
+        } catch (error) {
+            return left("Email and Password does not match!")
         }
-
-        const token: Output = {
-            token: await this.jwtHasher.encrypt(
-                JSON.stringify({
-                    name: user.name,
-                    email: user.email
-                })
-            )
-        }
-
-        await this.cache.set(token.token);
-        return right(token)
     }
 }
 

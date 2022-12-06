@@ -1,6 +1,5 @@
 import { User } from '../../../domain/entity/user'
 import { UserRepository } from '../../../domain/ports/user-repository'
-import { left } from '../../../shared';
 import Connection from '../ports/connection';
 
 export class UserRepositoryDatabase implements UserRepository {
@@ -12,11 +11,11 @@ export class UserRepositoryDatabase implements UserRepository {
         return result.length !== 0
     }
 
-    async getUserByEmail(email: string): Promise<User | any> {
+    async getUserByEmail(email: string): Promise<User> {
         const userDb = await this.connection.query(`SELECT * FROM user WHERE email = '${email}'`)
 
         if (userDb.length === 0)
-            return left('User not found!')
+            throw new Error("User not found");
 
         return User.create(userDb[0]).value
     }

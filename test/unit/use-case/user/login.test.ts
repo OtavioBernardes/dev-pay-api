@@ -33,6 +33,7 @@ describe('UseCase: Logging', () => {
             email: 'test@test.com',
             password: 'password0123'
         })
+        
         expect(result.isRight()).toEqual(true)
         expect(typeof result.value.token).toEqual('string')
     })

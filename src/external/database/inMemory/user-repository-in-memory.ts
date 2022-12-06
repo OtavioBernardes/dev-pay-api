@@ -13,7 +13,11 @@ export class UserRepositoryInMemory implements UserRepository {
     }
 
     async getUserByEmail(email: string): Promise<User> {
-        return this.users.filter((user: any) => user.email === email)[0]
+        const userDb = this.users.filter((user: any) => user.email === email)
+        if (userDb.length === 0)
+            throw new Error("User not found");
+
+        return userDb[0]
     }
 
     save(user: User): Promise<any> {
