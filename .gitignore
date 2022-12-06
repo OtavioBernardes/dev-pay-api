@@ -7,6 +7,3 @@ tmp
 
 # Environment variables, never commit this file
 .env
-
-# Migrations directory
-migrations
