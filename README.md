@@ -69,6 +69,10 @@ curl --request POST \
 	"cpf": "11111111100"
 }'
 ```
+
+## Run e2e tests
+1: Run `npm run test:e2e:ci`
+
 ## :page_facing_up: License
 
 **Free Software, Hell Yeah!**
