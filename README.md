@@ -16,6 +16,10 @@
   <a href="#page_facing_up-license">License</a>&nbsp;&nbsp;&nbsp;
 </p>
 
+# Workflow Status:
+
+![Dev-Pay](https://github.com/OtavioBernardes/dev-pay-api/actions/workflows/main.yml/badge.svg)
+
 # Project Overview:
 
 This project was made using clean architecture. </br>
