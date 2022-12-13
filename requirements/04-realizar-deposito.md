@@ -4,7 +4,7 @@ Como cliente, gostaria de realizar um deposito bancario.
 
 > ## Caso de sucesso
 
-1. ✅ Recebe uma requisição do tipo **Post** na rota **/api/**
+1. ✅ Recebe uma requisição do tipo **Post** na rota **/api/account/credit**
 2. ✅ Valida se o usuário de origem é valido
 3. ✅ Retorna **200**.
 
