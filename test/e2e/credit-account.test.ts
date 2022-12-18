@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { faker } from '@faker-js/faker';
-import { userInfo } from 'os';
 
 describe("Credit account", () => {
     let account: any;

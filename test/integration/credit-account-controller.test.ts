@@ -56,7 +56,7 @@ describe("CreditAccountController", () => {
 
     it("should return 400 because account does not exists", async () => {
 
-        repository.get.mockImplementation(() => left("Account not found"))
+        repository.get.mockImplementation(() => undefined)
         return new Promise((done) => {
             server
                 .post("/api/account/credit")
@@ -76,7 +76,6 @@ describe("CreditAccountController", () => {
 
     it("should return 400 because bad request", async () => {
 
-        repository.get.mockImplementation(() => left("Account not found"))
         return new Promise((done) => {
             server
                 .post("/api/account/credit")
