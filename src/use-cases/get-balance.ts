@@ -1,4 +1,5 @@
 import { AccountRepository } from "src/domain/ports/account-repository";
+import { left, right } from "../shared/index";
 import { UseCase } from "./ports";
 
 export class GetBalance implements UseCase {
@@ -11,8 +12,8 @@ export class GetBalance implements UseCase {
     async execute(account_id: number) {
         const account = await this.accountRepo.get(account_id)
         if (!account)
-            throw new Error("Account not found!")
+            return left("Account not found!")
         // @ts-ignore
-        return account.value.balance
+        return right({ balance: account.value.balance })
     }
 }
