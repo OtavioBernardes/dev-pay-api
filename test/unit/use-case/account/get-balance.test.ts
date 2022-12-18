@@ -16,12 +16,14 @@ describe('UseCase: GetBalance', () => {
 
         // @ts-ignore
         const account_id = await inMemoryDatabaseAccount.save(1, account)
-        const saldo = await useCaseGetBalance.execute(account_id);
-        expect(saldo).toEqual(0)
+        const result = await useCaseGetBalance.execute(account_id);
+        // @ts-ignore
+        expect(result.value.balance).toEqual(0)
     })
 
     it("Deve retornar uma expection pois a conta não existe", async () => {
         const account_id = faker.datatype.number();
-        await expect(useCaseGetBalance.execute(account_id)).rejects.toThrow("Account not found!")
+        const result = await useCaseGetBalance.execute(account_id)
+        expect(result.value).toEqual("Account not found!")
     })
 })
