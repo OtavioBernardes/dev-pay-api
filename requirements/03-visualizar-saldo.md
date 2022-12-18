@@ -3,7 +3,7 @@
 Como cliente gostaria de visualizar o dinheiro em caixa.
 > ## Caso de sucesso
 
-1. ✅ Recebe uma requisição do tipo **Get** na rota **/api/account/balance**
+1. ✅ Recebe uma requisição do tipo **Get** na rota **/api/account/accountId/balance**
 2. ✅ Retorna **200**, com o saldo da conta.
 
 > ## Exceções
