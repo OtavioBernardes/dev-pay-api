@@ -25,7 +25,7 @@ describe("Credit account", () => {
             await axios.post("http://localhost:3333/api/user/login", {
                 email: account.email,
                 password: passwordAccount
-            })
+            }, { timeout: 60000 })
         ).data
 
         const result = await axios.post("http://localhost:3333/api/account/credit", {
