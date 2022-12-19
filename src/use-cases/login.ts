@@ -25,7 +25,7 @@ export class Login implements UseCase {
         try {
             const user = await this.userRepo.getUserByEmail(data.email)
             if (!await this.hasher.compare(data.password, user.password)) {
-                return left('Email and Password does not match!')
+                return left("Email and Password does not match!")
             }
 
             const token: Output = {

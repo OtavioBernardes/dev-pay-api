@@ -11,7 +11,8 @@ export class GetBalance implements UseCase {
 
     async execute(account_id: number) {
         const account = await this.accountRepo.get(account_id)
-        if (!account)
+        // @ts-ignore
+        if (account.isLeft())
             return left("Account not found!")
         // @ts-ignore
         return right({ balance: account.value.balance })

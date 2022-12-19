@@ -7,6 +7,7 @@ import { MakeGetBalanceController } from "../../src/main/factories/controllers/g
 import { Account } from "../../src/domain/entity/account/account";
 import { Cpf, Email } from "../../src/domain/entity/user/value-object";
 import { faker } from '@faker-js/faker';
+import { left } from "../../src/shared";
 
 const repository = {
     get: jest.fn(),
@@ -55,7 +56,7 @@ describe("GetBalanceController", () => {
     it("should return 400 because account does not exist", async () => {
         const accountId = faker.random.numeric(5)
 
-        repository.get.mockImplementation(() => undefined)
+        repository.get.mockImplementation(() => left('Account not found!'))
         return new Promise((done) => {
             server
                 .get(`/api/account/${accountId}/balance`)

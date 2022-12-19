@@ -20,23 +20,30 @@ describe("Credit account", () => {
         ).data
     })
 
-    it("should return 200 because credit with success", async () => {
+    it("should return statusCode 200 because credit with success", async () => {
+        const amount = faker.datatype.float()
         const login = (
             await axios.post("http://localhost:3333/api/user/login", {
                 email: account.email,
                 password: passwordAccount
-            }, { timeout: 60000 })
+            })
         ).data
 
         const result = await axios.post("http://localhost:3333/api/account/credit", {
-            amount: faker.datatype.float(),
+            amount,
             to: account.account_id
         }, {
 
             headers: { authorization: `bearer ${login.token}` }
         })
 
+        const balance = await axios.get(`http://localhost:3333/api/account/${account.account_id}/balance`,
+            {
+                headers: { authorization: `bearer ${login.token}` }
+            })
+
         expect(result.status).toEqual(200)
+        expect(balance.data).toEqual({ balance: amount })
     })
 
     it("should return 400 because account to credit does not exists", async () => {

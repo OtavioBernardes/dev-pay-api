@@ -1,3 +1,4 @@
+import { left } from '../../../shared/';
 import { Account } from '../../../domain/entity/account/account';
 import { AccountRepository } from '../../../domain/ports/account-repository';
 
@@ -21,10 +22,10 @@ export class AccountRepositoryInMemory implements AccountRepository {
         })
     }
 
-    async get(id: number): Promise<Account | undefined> {
+    async get(id: number): Promise<any> {
         const account = this.accounts.filter((account: any) => account.id === id)[0]
         if (account)
             return Account.create(account.user)
-        return undefined
+        return left("Account not found!")
     }
 }

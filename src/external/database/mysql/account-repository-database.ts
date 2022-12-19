@@ -18,6 +18,7 @@ export class AccountRepositoryDatabase implements AccountRepository {
 
     async get(id: number): Promise<any> {
         const accountDb = await this.connection.query(`SELECT * FROM account INNER JOIN user on user.id = account.user_id where account.id = ${id}`)
+
         if (accountDb.length === 0)
             return left('Account not found!')
 
