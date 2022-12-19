@@ -10,10 +10,11 @@ export class GetBalanceController {
     }
 
     async handle(req: HttpRequest): Promise<any> {
-        if (!await this.validateParams(req.params))
+        const accountId = await this.getAccountId(req.params)
+        if (!accountId)
             return badRequest({ message: "AccountId Param not found!" })
 
-        const res = await this.usecase.execute(req.body);
+        const res = await this.usecase.execute(accountId as number);
         if (res.isLeft())
             return badRequest({ message: res.value })
 
@@ -21,8 +22,8 @@ export class GetBalanceController {
         return ok(res.value);
     }
 
-    async validateParams(params: { accountId: string }): Promise<Boolean> {
+    async getAccountId(params: { accountId: string }): Promise<Boolean | Number> {
         const number = Number(params.accountId)
-        return isNaN(number) ? false : true
+        return isNaN(number) ? false : number
     }
 }

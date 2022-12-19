@@ -8,8 +8,8 @@ export class AccountRepositoryDatabase implements AccountRepository {
     constructor(readonly connection: Connection) { }
 
     async save(user_id: number, account: Account): Promise<any> {
-        const accountDb = await this.connection.query(`INSERT INTO account (user_id, balance) VALUES  (${user_id}, ${account.balance})`)
-        return accountDb.insertId
+        const result = await this.connection.query(`INSERT INTO account (user_id, balance) VALUES  (${user_id}, ${account.balance})`)
+        return result.insertId
     }
 
     credit(data: any): void {
@@ -21,13 +21,14 @@ export class AccountRepositoryDatabase implements AccountRepository {
         if (accountDb.length === 0)
             return left('Account not found!')
 
+        const balance = accountDb[0].balance
         const user = {
-            name: accountDb.name,
-            email: accountDb.email,
-            cpf: accountDb.cpf,
-            password: accountDb.password
+            name: accountDb[0].name,
+            email: accountDb[0].email,
+            cpf: accountDb[0].cpf,
+            password: accountDb[0].password
         }
 
-        return Account.create(user)
+        return Account.create(user, balance)
     }
 }

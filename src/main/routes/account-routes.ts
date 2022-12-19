@@ -9,6 +9,6 @@ const router = Router()
 
 router.post('/account', adaptRoute(MakeNewAccountController()))
 router.post('/account/credit', auth, adaptRoute(MakeCreditAccountController()))
-router.get('/account/balance', auth, adaptRoute(MakeGetBalanceController()))
+router.get('/account/:accountId/balance', auth, adaptRoute(MakeGetBalanceController()))
 
 export default router

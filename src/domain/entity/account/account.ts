@@ -5,12 +5,13 @@ export class Account {
     user: User
     balance: number = 0
 
-    private constructor(user: User) {
+    private constructor(user: User, balance: number) {
         this.user = user
+        this.balance = balance
     }
 
-    public static create(user: User): any {
-        return right(new Account(user))
+    public static create(user: User, balance?: number): any {
+        return right(new Account(user, balance ? balance : 0))
     }
 
     public getBalance(): number {
