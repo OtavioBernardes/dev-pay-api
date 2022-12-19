@@ -30,6 +30,7 @@ describe("GetBalanceController", () => {
     })
 
     it("should return 200 because get balance with success", async () => {
+        const accountId = faker.random.numeric(5)
         const account = Account.create({
             name: "John",
             email: faker.internet.email() as unknown as Email,
@@ -40,7 +41,7 @@ describe("GetBalanceController", () => {
         repository.get.mockImplementation(() => account)
         return new Promise((done) => {
             server
-                .get("/api/account/balance")
+                .get(`/api/account/${accountId}/balance`)
                 .send()
                 .expect(200)
                 .end((_, req) => {
@@ -52,22 +53,31 @@ describe("GetBalanceController", () => {
     })
 
     it("should return 400 because account does not exist", async () => {
-        const account = Account.create({
-            name: "John",
-            email: faker.internet.email() as unknown as Email,
-            password: faker.random.alphaNumeric(),
-            cpf: faker.random.numeric(11) as unknown as Cpf
-        })
+        const accountId = faker.random.numeric(5)
 
         repository.get.mockImplementation(() => undefined)
         return new Promise((done) => {
             server
-                .get("/api/account/balance")
+                .get(`/api/account/${accountId}/balance`)
                 .send()
                 .expect(200)
                 .end((_, req) => {
                     expect(req.statusCode).toEqual(400)
                     expect(req.body).toEqual({ message: "Account not found!" })
+                    done(true)
+                })
+        })
+    })
+
+    it("should return 400 because missing accountId params", async () => {
+        return new Promise((done) => {
+            server
+                .get(`/api/account/invalidParams/balance`)
+                .send()
+                .expect(200)
+                .end((_, req) => {
+                    expect(req.statusCode).toEqual(400)
+                    expect(req.body).toEqual({ message: "AccountId Param not found!" })
                     done(true)
                 })
         })

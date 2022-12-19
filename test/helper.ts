@@ -7,7 +7,7 @@ type MockServerOptions = {
     loginUseCase?: any;
     creditUseCase?: any;
     newAccountUseCase?: any;
-    getBalanceUseCase?: any
+    getBalanceUseCase?: any;
 }
 
 const routes = async (options: MockServerOptions): Promise<Router> => {
@@ -16,7 +16,7 @@ const routes = async (options: MockServerOptions): Promise<Router> => {
     router.post('/api/user/login', adaptRoute(options.loginUseCase));
     router.post('/api/account/credit', adaptRoute(options.creditUseCase));
     router.post('/api/account', adaptRoute(options.newAccountUseCase));
-    router.get('/api/account/balance', adaptRoute(options.getBalanceUseCase));
+    router.get('/api/account/:accountId/balance', adaptRoute(options.getBalanceUseCase));
 
     return router;
 };
