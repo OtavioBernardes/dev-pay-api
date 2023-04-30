@@ -34,10 +34,7 @@ This project was made using clean architecture. </br>
 
 ## :question: About
 
-Dev-pay is a project composed of an API (NodeJS) and an App (ReactJS). </br>
 The objective of this project is to simulate operations like a digital bank.
-
-Clone the app at: [Dev-pay APP](https://github.com/Mateussj/dev-pay-app) 
 
 ## :gear: Technologies
 
