@@ -70,6 +70,3 @@ curl --request POST \
 	"cpf": "11111111100"
 }'
 ```
-## :page_facing_up: License
-
-**Free Software, Hell Yeah!**
